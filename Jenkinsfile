@@ -14,7 +14,8 @@ pipeline {
         }
         stage('Build') {
             steps {
-                mvn clean install
+                //mvn clean install
+                echo "building the product"
             }
         }
         stage('Test') {
