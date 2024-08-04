@@ -1,27 +1,27 @@
 pipeline {
-    agent any
-
-    environment {
-        GIT_REPO = 'https://github.com/gaurav157243/devops.git'
-        BRANCH = 'main'
-    }
+    agent any  // This will run on any available agent. Modify if you want to specify a particular node or label.
 
     stages {
-        stage('Checkout') {
-            steps {
-                git branch: "${BRANCH}", url: "${GIT_REPO}"
-            }
-        }
         stage('Build') {
             steps {
-                //mvn clean install
-                echo "building the product"
+                script {
+                    // Ensure Maven is in the PATH
+                    bat 'mvn -v'  // Verify Maven installation
+                    bat 'mvn clean install'  // Run the Maven build
+                }
             }
         }
-        stage('Test') {
-            steps {
-                echo "running test"
-            }
+    }
+
+    post {
+        success {
+            echo 'Build succeeded!'
+        }
+        failure {
+            echo 'Build failed.'
+        }
+        always {
+            archiveArtifacts artifacts: '**/target/*.jar', allowEmptyArchive: true
         }
     }
 }
