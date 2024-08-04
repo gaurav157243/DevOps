@@ -10,7 +10,14 @@ pipeline {
                     bat 'mvn clean install'  // Run the Maven build
                 }
             }
+        stage('package') {
+            steps {
+                script {
+                    bat 'docker build . '
+                }
+            }
         }
+            
     }
 
     post {
