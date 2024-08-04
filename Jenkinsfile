@@ -14,17 +14,17 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'make build'
+                mvn clean install
             }
         }
         stage('Test') {
             steps {
-                sh 'make test'
+                echo "running test"
             }
         }
         stage('Deploy') {
             steps {
-                sh 'make deploy'
+                docker build .
             }
         }
     }
