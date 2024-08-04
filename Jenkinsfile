@@ -22,10 +22,5 @@ pipeline {
                 echo "running test"
             }
         }
-        stage('Deploy') {
-            steps {
-                docker build .
-            }
-        }
     }
 }
