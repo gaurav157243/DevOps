@@ -5,7 +5,11 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                echo "my code is getting built ..."
+                 script {
+                     // Ensure Maven is in the PATH
+                     bat 'mvn -v'  // Verify Maven installation
+                     bat 'mvn clean install'  // Run the Maven build
+                 }
             }
         }
         stage('testing') {
