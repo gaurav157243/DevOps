@@ -1,34 +1,63 @@
 pipeline {
-    agent any  // This will run on any available agent. Modify if you want to specify a particular node or label.
-
+    
+    agent any 
+    
     stages {
-        stage('Build') {
+        stage('build') {
             steps {
-                script {
-                    // Ensure Maven is in the PATH
-                    bat 'mvn -v'  // Verify Maven installation
-                    bat 'mvn clean install'  // Run the Maven build
-                }
+                echo "my code is getting built ..."
+            }
+        }
+        stage('testing') {
+            steps {
+                echo "my code is getting tested ..."
+            }
+        }
+        stage('code analysis') {
+            steps {
+                echo "my code is getting analysed by Sonar ..."
             }
         }
         stage('package') {
             steps {
-                script {
-                    bat 'docker build . '
-                }
+                echo "my docker image is getting create ..."
             }
         }
     }
-
-    post {
-        success {
-            echo 'Build succeeded!'
-        }
-        failure {
-            echo 'Build failed.'
-        }
-        always {
-            archiveArtifacts artifacts: '**/target/*.jar', allowEmptyArchive: true
-        }
-    }
 }
+
+
+// pipeline {
+//     agent any  // This will run on any available agent. Modify if you want to specify a particular node or label.
+
+//     stages {
+//         stage('Build') {
+//             steps {
+//                 script {
+//                     // Ensure Maven is in the PATH
+//                     bat 'mvn -v'  // Verify Maven installation
+//                     bat 'mvn clean install'  // Run the Maven build
+//                 }
+//             }
+//         }
+//         stage('package') {
+//             steps {
+//                 script {
+//                     bat 'docker build . '
+//                 }
+//             }
+//         }
+//     }
+
+//     post {
+//         success {
+//             echo 'Build succeeded!'
+//         }
+//         failure {
+//             echo 'Build failed.'
+//         }
+//         always {
+//             archiveArtifacts artifacts: '**/target/*.jar', allowEmptyArchive: true
+//         }
+//     }
+// }
