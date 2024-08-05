@@ -12,19 +12,11 @@ pipeline {
                  }
             }
         }
-        stage('testing') {
-            steps {
-                echo "my code is getting tested ..."
-            }
-        }
-        stage('code analysis') {
-            steps {
-                echo "my code is getting analysed by Sonar ..."
-            }
-        }
         stage('package') {
             steps {
-                echo "my docker image is getting create ..."
+                script {
+                    bat 'docker build .'
+                }
             }
         }
     }
