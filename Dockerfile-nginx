@@ -12,7 +12,7 @@ WORKDIR /app
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copy the Spring Boot application JAR from the build stage
-COPY --from=builder /app/target/*.jar /app/*.jar
+COPY --from=builder /app/target/demo*.jar /app/demo.jar
 
 # Install OpenJDK to run the Spring Boot application
 RUN apk add --no-cache openjdk17-jre
