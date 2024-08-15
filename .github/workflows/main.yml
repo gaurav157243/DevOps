@@ -55,12 +55,12 @@ jobs:
       # Step 5: Tag the Docker image for ECR
       - name: Tag Docker image
         run: |
-          docker tag demo:latest ${{ steps.login-ecr.outputs.registry }}/demo:latest
+          docker tag demo:latest ${{ steps.login-ecr.outputs.registry }}/c5r9a9a2/demo:latest
 
       # Step 6: Push the Docker image to Amazon ECR
       - name: Push Docker image to ECR
         run: |
-          docker push ${{ steps.login-ecr.outputs.registry }}/demo:latest
+          docker push ${{ steps.login-ecr.outputs.registry }}/c5r9a9a2/demo:latest
 
       # - name: Push Docker image to Amazon ECR
       #   run: |
