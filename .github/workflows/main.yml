@@ -36,7 +36,7 @@ jobs:
           
       - name: Tag and Push Docker image to Docker Hub
         run: |
-          docker tag demo:latest ${{ secrets.DOCKER_USERNAME }}/demo-nginx:latest
+          docker tag demo-nginx:latest ${{ secrets.DOCKER_USERNAME }}/demo-nginx:latest
           docker push ${{ secrets.DOCKER_USERNAME }}/demo-nginx:latest
 
       - name: Configure AWS credentials
