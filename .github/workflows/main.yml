@@ -26,7 +26,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t demo:latest -f Dockerfile-nginx .
+          docker build -t demo-nginx:latest -f Dockerfile-nginx .
 
       - name: Log in to Docker Hub 
         uses: docker/login-action@v2
