@@ -26,7 +26,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t demo:latest .
+          docker build -t demo:latest -f Dockerfile-nginx .
 
       - name: Log in to Docker Hub 
         uses: docker/login-action@v2
@@ -39,20 +39,20 @@ jobs:
           docker tag demo:latest ${{ secrets.DOCKER_USERNAME }}/demo:latest
           docker push ${{ secrets.DOCKER_USERNAME }}/demo:latest
 
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1  # Replace with your region
+      # - name: Configure AWS credentials
+      #   uses: aws-actions/configure-aws-credentials@v2
+      #   with:
+      #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     aws-region: us-east-1  # Replace with your region
 
-      - name: Log in to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v2
+      # - name: Log in to Amazon ECR
+      #   id: login-ecr
+      #   uses: aws-actions/amazon-ecr-login@v2
 
-      - name: Push Docker image to Amazon ECR
-        run: |
-          #docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-1.amazonaws.com/demo:latest
-          docker tag demo:latest public.ecr.aws/c5r9a9a2/demo:latest
-          docker push public.ecr.aws/c5r9a9a2/demo:latest
+      # - name: Push Docker image to Amazon ECR
+      #   run: |
+      #     #docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-1.amazonaws.com/demo:latest
+      #     docker tag demo:latest public.ecr.aws/c5r9a9a2/demo:latest
+      #     docker push public.ecr.aws/c5r9a9a2/demo:latest
 
