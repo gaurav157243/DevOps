@@ -55,7 +55,6 @@ jobs:
       # Step 5: Tag the Docker image for ECR
       - name: Tag Docker image
         run: |
-          # docker tag demo:latest ${{ steps.login-ecr.outputs.registry }}/c5r9a9a2/demo:latest
           docker tag demo:latest public.ecr.aws/c5r9a9a2/demo:latest
           
 
