@@ -57,16 +57,21 @@ jobs:
         run: |
           echo "registry name: "
           echo ${{ steps.login-ecr.outputs.registry }}
-          docker tag demo:latest 975050035913.dkr.ecr.us-east-1.amazonaws.com/privaterepo:latest
+          docker tag demo:latest public.ecr.aws/c5r9a9a2/demo:latest
           
 
       # Step 6: Push the Docker image to Amazon ECR
       - name: Push Docker image to ECR
         run: |
-          docker push 975050035913.dkr.ecr.us-east-1.amazonaws.com/privaterepo:latest
+          docker push public.ecr.aws/c5r9a9a2/demo:latest
+          
       # - name: Push Docker image to Amazon ECR
       #   run: |
       #     #docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-1.amazonaws.com/demo:latest
       #     docker tag demo:latest public.ecr.aws/c5r9a9a2/demo:latest
       #     docker push public.ecr.aws/c5r9a9a2/demo:latest
+
+#           docker tag demo:latest 975050035913.dkr.ecr.us-east-1.amazonaws.com/privaterepo:latest
+#           docker push 975050035913.dkr.ecr.us-east-1.amazonaws.com/privaterepo:latest
+
 
