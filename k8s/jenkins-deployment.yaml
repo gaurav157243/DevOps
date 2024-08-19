@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkins-deployment
+  labels:
+    app: jenkins
+spec:
+  replicas: 1  # Number of pod replicas
+  selector:
+    matchLabels:
+      app: jenkins 
+  template:
+    metadata:
+      labels:
+        app: jenkins
+    spec:
+      containers:
+      - name: jenkins 
+        image: jenkins/jenkins:latest  # Nginx Docker image
+        ports:
+        - containerPort: 8080  # Port that Nginx will listen on
