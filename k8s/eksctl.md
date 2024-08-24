@@ -79,6 +79,31 @@ $ eksctl create cluster --name test-cluster --region us-east-1 --nodes 1 --node-
 
 ![image](https://github.com/user-attachments/assets/22747edb-2fe0-4a20-a18c-3c50c2381846)
 
+
+To access the application externally, use the k8s/demo-load-balancer.yaml with type: LoadBalancer and apply the same and it will create the externally accessible serivce
+
+--> Using the browser: http://a92ce6c2e2bb1415ba002d7439b524e8-509440225.us-east-1.elb.amazonaws.com:8080/api/hello
+
+DELL@DESKTOP-J95OFBD MINGW64 ~/Downloads/devops/k8s (main)
+$ kubectl get all
+NAME                                   READY   STATUS    RESTARTS   AGE
+pod/demo-deployment-5d54dbcf58-m56tg   1/1     Running   0          18m
+pod/demo-deployment-5d54dbcf58-w7w2p   1/1     Running   0          18m
+pod/demo-deployment-5d54dbcf58-z498r   1/1     Running   0          18m
+
+NAME                   TYPE           CLUSTER-IP       EXTERNAL-IP                                                              PORT(S)          AGE
+service/demo-service   LoadBalancer   10.100.117.236   a92ce6c2e2bb1415ba002d7439b524e8-509440225.us-east-1.elb.amazonaws.com   8080:30080/TCP   18m
+service/kubernetes     ClusterIP      10.100.0.1       <none>                                                                   443/TCP          30m
+
+NAME                              READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/demo-deployment   3/3     3            3           18m
+
+NAME                                         DESIRED   CURRENT   READY   AGE
+replicaset.apps/demo-deployment-5d54dbcf58   3         3         3       18m
+
+DELL@DESKTOP-J95OFBD MINGW64 ~/Downloads/devops/k8s (main)
+
+
 -->  To delete a cluster 
 
 eksctl delete cluster --name my-cluster
