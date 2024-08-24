@@ -77,6 +77,8 @@ $ eksctl create cluster --name test-cluster --region us-east-1 --nodes 1 --node-
 2024-08-24 15:38:28 [✔]  EKS cluster "test-cluster" in "us-east-1" region is ready
 
 
+![image](https://github.com/user-attachments/assets/22747edb-2fe0-4a20-a18c-3c50c2381846)
+
 -->  To delete a cluster 
 
 eksctl delete cluster --name my-cluster
