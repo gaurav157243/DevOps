@@ -23,5 +23,5 @@ spec:
       volumes:
         - name: jenkins-home
           hostPath:
-            path: "C:\\jenkins"
+            path: "C:\\Users\\DELL\\Downloads\\jenkins\\"
             type: Directory
