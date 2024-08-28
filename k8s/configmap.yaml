@@ -1,0 +1,44 @@
+# configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-configmap
+  namespace: default
+data:
+  APP_NAME: "MyApp"
+  LOG_LEVEL: "debug"
+
+---
+
+# deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app-deployment
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+      - name: my-app-container
+        image: my-app-image:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: APP_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: my-configmap
+              key: APP_NAME
+        - name: LOG_LEVEL
+          valueFrom:
+            configMapKeyRef:
+              name: my-configmap
+              key: LOG_LEVEL
