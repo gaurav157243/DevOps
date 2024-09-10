@@ -82,6 +82,7 @@ resource "aws_instance" "web_1" {
   ami           = "ami-0182f373e66f89c85" # Replace with a valid Amazon Linux 2 AMI in your region
   instance_type = "t2.micro"
   subnet_id     = aws_subnet.subnet_1.id
+  associate_public_ip_address = true
   vpc_security_group_ids = [aws_security_group.allow_http.id] # Update to use vpc_security_group_ids
 
   user_data = <<-EOF
@@ -102,6 +103,7 @@ resource "aws_instance" "web_2" {
   ami           = "ami-0182f373e66f89c85" # Replace with a valid Amazon Linux 2 AMI in your region
   instance_type = "t2.micro"
   subnet_id     = aws_subnet.subnet_2.id
+  associate_public_ip_address = true
   vpc_security_group_ids = [aws_security_group.allow_http.id] # Update to use vpc_security_group_ids
 
   user_data = <<-EOF
