@@ -1,0 +1,9 @@
+Exercise:  Install MySql database on the EC2 instance running Amazon linux using Ansible
+Following are the high level steps:
+
+* install mysql server
+* start the server
+* set the root password
+* create a database
+* create mysql user
+* open mysqq port 3306
